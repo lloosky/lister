@@ -11,12 +11,12 @@ import NavBar from "@/components/NavBar.vue";
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
-          height="20px"
+          height="35px"
           id="Layer_1"
           style="enable-background: new 0 0 32 32"
           version="1.1"
           viewBox="0 0 32 32"
-          width="20px"
+          width="35px"
           xml:space="preserve"
         >
           <path
@@ -53,7 +53,7 @@ $dark-base-color: #007d5e;
 
   .list-container__single-list--empty {
     @extend .list-container__single-list;
-    height: 30px;
+    background-color: #c9fff2b8;
     padding: 0 10px;
     cursor: pointer;
     transition: 0.3s all;

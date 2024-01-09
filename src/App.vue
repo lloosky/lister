@@ -12,6 +12,9 @@ import { io } from "socket.io-client";
 // function test() {
 //   socket.emit('test', 'nowa wiadomość');
 // }
+onMounted(() => {
+  console.log("TESTTESTTEST");
+});
 </script>
 
 <template>
