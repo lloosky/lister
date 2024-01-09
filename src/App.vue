@@ -1,30 +1,44 @@
+<script setup lang="ts">
+import { RouterLink, RouterView } from "vue-router";
+import { onMounted } from "vue";
+import { io } from "socket.io-client";
+
+// const socket = io('http://localhost:3000/');
+
+// socket.on('RRR', (r: string) => {
+//   console.log('R', r);
+// });
+
+// function test() {
+//   socket.emit('test', 'nowa wiadomość');
+// }
+</script>
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <RouterView />
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;400&family=Noto+Sans&display=swap");
+
+$base-color: #4fffd4;
+$light-base-color: #c9fff2;
+$dark-base-color: #007d5e;
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, black 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, black 25%, transparent 25%),
+    linear-gradient(45deg, black 25%, transparent 25%);
+  background-size: 2em 2em;
+  background-color: #232323;
+  margin: 0;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+#app {
+  max-width: 100%;
 }
 </style>
