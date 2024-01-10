@@ -1,12 +1,53 @@
 <script setup lang="ts">
 import NavBar from "@/components/NavBar.vue";
+
+import { RouterLink, RouterView } from "vue-router";
+import { ref, onMounted } from "vue";
+import { io } from "socket.io-client";
+import gsap from "gsap";
+
+// const socket = io('http://localhost:3000/');
+
+// socket.on('RRR', (r: string) => {
+//   console.log('R', r);
+// });
+
+// function test() {
+//   socket.emit('test', 'nowa wiadomość');
+// }
+// onMounted(() => {
+//   console.log("TESTTESTTEST");
+// });
+interface SingleList {
+  name: string;
+}
+interface List {
+  id: number;
+  list: Array<SingleList>;
+}
+
+let lists = ref<Array<List>>([]);
+
+onMounted(() => {
+  // console.log(lists);
+});
+function addList() {
+  lists.value.push({
+    id: 1,
+    list: [{ name: "test" }],
+  });
+}
 </script>
 
 <template>
   <NavBar />
   <div class="list-container">
-    <div class="list-container__single-list"></div>
-    <div class="list-container__single-list--empty">
+    <div
+      v-for="list in lists"
+      :key="list.id"
+      class="list-container__single-list"
+    ></div>
+    <div @click="addList" class="list-container__single-list--empty">
       <div class="content">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +84,7 @@ $dark-base-color: #007d5e;
 
   .list-container__single-list {
     width: 300px;
+    max-width: 100%;
     height: 600px;
     background-color: $light-base-color;
     margin: 5px;

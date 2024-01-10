@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import { onMounted } from "vue";
+import { defineComponent } from "vue";
 import { io } from "socket.io-client";
 
 // const socket = io('http://localhost:3000/');
@@ -12,9 +12,9 @@ import { io } from "socket.io-client";
 // function test() {
 //   socket.emit('test', 'nowa wiadomość');
 // }
-onMounted(() => {
-  console.log("TESTTESTTEST");
-});
+// onMounted(() => {
+//   console.log("TESTTESTTEST");
+// });
 </script>
 
 <template>
