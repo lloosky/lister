@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NavBar from "@/components/NavBar.vue";
 import { RouterLink, RouterView } from "vue-router";
 import { defineComponent } from "vue";
 import { io } from "socket.io-client";
@@ -18,6 +19,7 @@ import { io } from "socket.io-client";
 </script>
 
 <template>
+  <NavBar />
   <RouterView />
 </template>
 
@@ -43,5 +45,14 @@ body {
 
 #app {
   max-width: 100%;
+  display: grid;
+}
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

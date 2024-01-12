@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Dashboard from "../views/DashboardView.vue";
+import SingleList from "../views/SingleList.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
+    name: "Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/single-list/:name/:id",
+    name: "SingleList",
+    component: SingleList,
   },
 ];
 

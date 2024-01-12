@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import NavBar from "@/components/NavBar.vue";
-
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView, useRouter, useRoute } from "vue-router";
+import { useStore } from "vuex";
 import { ref, onMounted } from "vue";
 import { io } from "socket.io-client";
-import gsap from "gsap";
 
 // const socket = io('http://localhost:3000/');
 
@@ -18,35 +16,40 @@ import gsap from "gsap";
 // onMounted(() => {
 //   console.log("TESTTESTTEST");
 // });
-interface SingleList {
-  name: string;
-}
-interface List {
-  id: number;
-  list: Array<SingleList>;
-}
-
-let lists = ref<Array<List>>([]);
+const router = useRouter();
+const store = useStore();
+let lists = store.state.lists;
 
 onMounted(() => {
-  // console.log(lists);
+  // console.log(store.state);
+  // addList();
 });
 function addList() {
-  lists.value.push({
-    id: 1,
+  store.dispatch("addToLists", {
+    id: lists.length + 1,
+    title: "Testing Shopping List" + lists.length,
     list: [{ name: "test" }],
+  });
+}
+function openList(id: number, title: string, list: object) {
+  router.push({
+    path: `/single-list/${title
+      .toLocaleLowerCase()
+      .replaceAll(" ", "-")}/${id}`,
   });
 }
 </script>
 
 <template>
-  <NavBar />
   <div class="list-container">
     <div
       v-for="list in lists"
       :key="list.id"
       class="list-container__single-list"
-    ></div>
+      @click="openList(list.id, list.title, list)"
+    >
+      <span>{{ list.title }}</span>
+    </div>
     <div @click="addList" class="list-container__single-list--empty">
       <div class="content">
         <svg
@@ -76,40 +79,39 @@ $dark-base-color: #007d5e;
 
 .list-container {
   font-family: "Lato", sans-serif;
-  height: 100vh;
-  max-height: 100%;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
+  // background-color: red;
+  display: grid;
+  grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
+  gap: 10px;
+  width: 50%;
+  justify-self: center;
 
   .list-container__single-list {
-    width: 300px;
+    width: 100%;
     max-width: 100%;
-    height: 600px;
+    height: 150px;
     background-color: $light-base-color;
-    margin: 5px;
-    display: inline-block;
     border-radius: 25px;
-    vertical-align: top;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: 0.3s all;
+    cursor: pointer;
+    &:hover {
+      transform: scale(0.9);
+    }
   }
-
   .list-container__single-list--empty {
     @extend .list-container__single-list;
     background-color: #c9fff2b8;
     padding: 0 10px;
-    cursor: pointer;
-    transition: 0.3s all;
-
     .content {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    &:hover {
-      transform: scale(0.9);
     }
   }
 }
