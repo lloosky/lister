@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 
 interface SingleList {
+  id: number;
   name: string;
 }
 interface List {

@@ -96,6 +96,7 @@ $dark-base-color: #007d5e;
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: center;
     transition: 0.3s all;
     cursor: pointer;
     &:hover {
